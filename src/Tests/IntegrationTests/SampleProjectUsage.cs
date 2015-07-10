@@ -97,5 +97,27 @@ namespace TeamCitySharp.IntegrationTests
             Assert.That(project, Is.Not.Null);
             Assert.That(project.Name, Is.EqualTo(projectName));
         }
+
+        [Test]
+        public void it_returns_parent_project_when_creating_project()
+        {
+            var client = new TeamCityClient("localhost:81");
+            client.Connect("admin", "qwerty");
+            var projectName = Guid.NewGuid().ToString("N");
+            var project = client.Projects.Create(projectName);
+
+            Assert.That(project.ParentProjectId, Is.Not.Null);
+        }
+
+        [Test]
+        public void it_returns_subprojects_when_creating_project()
+        {
+            var client = new TeamCityClient("localhost:81");
+            client.Connect("admin", "qwerty");
+            var projectName = Guid.NewGuid().ToString("N");
+            var project = client.Projects.Create(projectName);
+
+            Assert.That(project.Projects.Project, Is.Not.Null);
+        }
     }
 }

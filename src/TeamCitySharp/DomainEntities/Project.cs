@@ -13,8 +13,10 @@
         public string Id { get; set; }
         public string Name { get; set; }
         public string WebUrl { get; set; }
+        public string ParentProjectId { get; set; }
 
         public BuildTypeWrapper BuildTypes { get; set; }
         public Parameters Parameters { get; set; }
+        public Projects Projects { get; set; }
     }
 }
